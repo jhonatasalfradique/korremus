@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Korremus — Juntos, corremos mais longe</title>
+<meta name="description" content="O primeiro app brasileiro de corrida coletiva. Encontros reais na sua cidade, treinos com especialistas e medalhas que viram troféu na sua casa.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green: #2E9C7E;
+  --green-dark: #1F7A60;
+  --navy: #1A3B5C;
+  --navy-deep: #0F2840;
+  --orange: #FF6B35;
+  --cream: #FAF7F2;
+  --paper: #FFFFFF;
+  --ink: #0A1F2E;
+  --muted: #6B7B8C;
+  --line: rgba(26, 59, 92, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+@media (max-width: 768px) { .container { padding: 0 20px; } }
+
+/* NAVBAR */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250, 247, 242, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  transition: all 0.3s ease;
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px; max-width: 1280px; margin: 0 auto;
+}
+.nav-logo img { height: 44px; width: auto; display: block; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--ink); transition: color 0.2s; }
+.nav-links a:hover { color: var(--green); }
+.nav-cta {
+  background: var(--navy); color: white !important;
+  padding: 10px 20px; border-radius: 100px; font-size: 14px;
+  transition: all 0.2s; font-weight: 600;
+}
+.nav-cta:hover { background: var(--green) !important; transform: translateY(-1px); }
+@media (max-width: 768px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .nav-logo img { height: 36px; }
+}
+
+/* HERO */
+.hero {
+  position: relative; min-height: 100vh; padding: 140px 0 80px;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('images/full-shot-people-running-together.jpg');
+  background-size: cover; background-position: center 30%;
+  filter: brightness(0.55) saturate(1.1);
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg,
+    rgba(15, 40, 64, 0.65) 0%,
+    rgba(26, 59, 92, 0.55) 50%,
+    rgba(46, 156, 126, 0.35) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2; max-width: 880px;
+  color: white;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 100px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 13px; font-weight: 500;
+  margin-bottom: 32px;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-tag .dot {
+  width: 8px; height: 8px; background: var(--green); border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 156, 126, 0.7); }
+  70% { box-shadow: 0 0 0 12px rgba(46, 156, 126, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 156, 126, 0); }
+}
+.hero h1 {
+  font-family: 'Fraunces', serif; font-weight: 900;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.95; letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  animation: fadeUp 1s 0.1s ease both;
+}
+.hero h1 .em { font-style: italic; font-weight: 400; color: var(--green); }
+.hero-sub {
+  font-size: clamp(17px, 1.6vw, 22px);
+  line-height: 1.5; max-width: 640px;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 40px; font-weight: 400;
+  animation: fadeUp 1s 0.3s ease both;
+}
+.hero-actions {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeUp 1s 0.5s ease both;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 28px; border-radius: 100px;
+  font-weight: 600; font-size: 15px;
+  transition: all 0.25s ease; cursor: pointer;
+  border: none; font-family: 'Inter', sans-serif;
+}
+.btn-primary {
+  background: var(--green); color: white;
+  box-shadow: 0 8px 24px rgba(46, 156, 126, 0.4);
+}
+.btn-primary:hover {
+  background: var(--green-dark); transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(46, 156, 126, 0.5);
+}
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: white; border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.2); }
+.btn-dark { background: var(--navy); color: white; }
+.btn-dark:hover { background: var(--navy-deep); transform: translateY(-2px); }
+.hero-stars {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 32px;
+  font-size: 14px; color: rgba(255, 255, 255, 0.85);
+  animation: fadeUp 1s 0.7s ease both;
+}
+.hero-stars .stars { color: #FFB800; letter-spacing: 2px; font-size: 16px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTION BASE */
+.section { padding: 120px 0; position: relative; }
+.section-tag {
+  display: inline-block; font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--green); margin-bottom: 20px;
+}
+.section h2 {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--navy); margin-bottom: 24px; max-width: 800px;
+}
+.section h2 .em { font-style: italic; font-weight: 400; color: var(--green); }
+.section-intro {
+  font-size: 18px; max-width: 640px;
+  color: var(--muted); margin-bottom: 64px;
+}
+
+/* PROBLEMA */
+.problem { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+@media (max-width: 900px) { .problem-grid { grid-template-columns: 1fr; gap: 24px; } }
+.problem-card {
+  padding: 40px 32px; border-radius: 24px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  transition: all 0.3s ease;
+  position: relative; overflow: hidden;
+}
+.problem-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(26, 59, 92, 0.2);
+  border-color: var(--orange);
+}
+.problem-card .icon {
+  width: 56px; height: 56px;
+  background: linear-gradient(135deg, var(--orange), #ff8b5e);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; margin-bottom: 24px;
+  box-shadow: 0 8px 16px -4px rgba(255, 107, 53, 0.4);
+}
+.problem-card h3 {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 22px; color: var(--navy); margin-bottom: 12px;
+  line-height: 1.25;
+}
+.problem-card p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+/* SOLUÇÃO */
+.solution { background: var(--cream); position: relative; }
+.solution-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+@media (max-width: 900px) { .solution-grid { grid-template-columns: 1fr; } }
+.step-card {
+  position: relative; padding: 40px 32px;
+  background: var(--paper); border-radius: 28px;
+  border: 1px solid var(--line);
+  transition: all 0.3s ease;
+}
+.step-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -24px rgba(26, 59, 92, 0.25); }
+.step-num {
+  font-family: 'Fraunces', serif;
+  font-size: 80px; font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--green), var(--navy));
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  margin-bottom: 16px;
+}
+.step-card h3 {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 26px; color: var(--navy); margin-bottom: 16px;
+  line-height: 1.15;
+}
+.step-card p { color: var(--muted); font-size: 16px; line-height: 1.6; }
+
+/* ENCONTROS */
+.meetups { background: var(--paper); padding: 120px 0; border-top: 1px solid var(--line); }
+.meetups-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+@media (max-width: 900px) { .meetups-inner { grid-template-columns: 1fr; gap: 48px; } }
+.meetups-img {
+  position: relative; border-radius: 32px; overflow: hidden;
+  aspect-ratio: 4/5;
+  box-shadow: 0 32px 64px -24px rgba(26, 59, 92, 0.3);
+}
+.meetups-img img { width: 100%; height: 100%; object-fit: cover; }
+.meetups-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(15, 40, 64, 0.4));
+}
+.meetups-img .badge {
+  position: absolute; bottom: 24px; left: 24px; right: 24px;
+  padding: 20px 24px; border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  display: flex; align-items: center; gap: 16px;
+}
+.meetups-img .badge .pin {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.meetups-img .badge .info .name {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 17px; color: var(--navy); line-height: 1.2;
+}
+.meetups-img .badge .info .meta { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.meetups-img .badge .count { margin-left: auto; text-align: right; }
+.meetups-img .badge .count .num {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 22px; color: var(--green); line-height: 1;
+}
+.meetups-img .badge .count .lbl {
+  font-size: 11px; color: var(--muted); text-transform: uppercase;
+  letter-spacing: 0.08em; margin-top: 2px;
+}
+.meetups-list { margin-top: 32px; }
+.meetups-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.meetups-item:last-child { border-bottom: none; }
+.meetups-item .icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(46, 156, 126, 0.12);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 18px;
+}
+.meetups-item .text { font-size: 16px; color: var(--ink); line-height: 1.5; }
+
+/* MEDALHAS */
+.rewards {
+  background: linear-gradient(180deg, var(--navy-deep) 0%, #0a1f2e 100%);
+  color: white; position: relative; overflow: hidden;
+}
+.rewards::before {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.12), transparent 60%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.rewards .section-tag { color: var(--orange); }
+.rewards h2 { color: white; position: relative; }
+.rewards h2 .em { color: var(--orange); }
+.rewards .section-intro { color: rgba(255, 255, 255, 0.7); position: relative; }
+.rewards-grid {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  gap: 64px; align-items: center; position: relative;
+}
+@media (max-width: 900px) { .rewards-grid { grid-template-columns: 1fr; gap: 48px; } }
+.medal-photo {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.medal-photo img {
+  max-width: 100%;
+  width: 540px;
+  height: auto;
+  filter: drop-shadow(0 32px 64px rgba(255, 107, 53, 0.3))
+          drop-shadow(0 16px 32px rgba(0, 0, 0, 0.4));
+  animation: floatMedal 6s ease-in-out infinite;
+}
+@keyframes floatMedal {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+}
+.rewards-features { margin-top: 40px; }
+.rewards-feature {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.rewards-feature:last-child { border-bottom: none; }
+.rewards-feature .icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(255, 107, 53, 0.15);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--orange); flex-shrink: 0; font-size: 20px;
+}
+.rewards-feature .text { font-size: 16px; color: rgba(255, 255, 255, 0.9); line-height: 1.5; }
+.rewards-quote {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 22px; line-height: 1.4;
+  color: var(--orange);
+}
+
+/* COMPARAÇÃO */
+.compare { background: var(--paper); border-top: 1px solid var(--line); }
+.compare-table {
+  margin-top: 64px;
+  border-radius: 24px; overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--cream);
+}
+.compare-row {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.compare-row:last-child { border-bottom: none; }
+.compare-row.header { background: var(--navy); color: white; }
+.compare-cell { padding: 24px; display: flex; align-items: center; font-size: 15px; }
+.compare-cell.feature {
+  font-weight: 500; color: var(--ink);
+  border-right: 1px solid var(--line);
+}
+.compare-row.header .compare-cell {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 16px; justify-content: center;
+}
+.compare-row.header .compare-cell.feature { justify-content: flex-start; }
+.compare-cell:not(.feature) { justify-content: center; }
+.col-korremus {
+  background: rgba(46, 156, 126, 0.04);
+  border-left: 2px solid var(--green);
+}
+.compare-row.header .col-korremus {
+  background: var(--green);
+  border-left: 2px solid var(--green-dark);
+}
+.check-yes { color: var(--green); font-size: 22px; font-weight: 700; }
+.check-no { color: #C44; font-size: 22px; font-weight: 700; opacity: 0.5; }
+@media (max-width: 768px) {
+  .compare-row { grid-template-columns: 1.4fr 0.8fr 0.8fr 0.8fr 0.9fr; }
+  .compare-cell { padding: 14px 8px; font-size: 12px; }
+  .compare-row.header .compare-cell { font-size: 11px; }
+}
+.compare-quote {
+  margin-top: 48px; padding: 40px;
+  background: var(--navy); color: white;
+  border-radius: 24px; text-align: center;
+}
+.compare-quote p {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700; line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.compare-quote p .em { font-style: italic; font-weight: 400; color: var(--green); }
+
+/* PERSONAS */
+.personas { background: var(--cream); }
+.personas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+@media (max-width: 900px) { .personas-grid { grid-template-columns: 1fr; } }
+.persona-card {
+  padding: 36px 32px; border-radius: 24px;
+  background: var(--paper); border: 1px solid var(--line);
+  transition: all 0.3s ease;
+}
+.persona-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(26, 59, 92, 0.2);
+  border-color: var(--green);
+}
+.persona-card .emoji { font-size: 40px; margin-bottom: 20px; }
+.persona-card h3 {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 22px; color: var(--navy); margin-bottom: 12px;
+  line-height: 1.25;
+}
+.persona-card p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+/* DEPOIMENTOS */
+.testimonials { background: var(--paper); border-top: 1px solid var(--line); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+@media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; } }
+.testimonial-card {
+  padding: 32px;
+  background: var(--cream); border-radius: 24px;
+  border: 1px solid var(--line);
+  position: relative;
+}
+.testimonial-card::before {
+  content: '"'; position: absolute; top: 16px; right: 24px;
+  font-family: 'Fraunces', serif; font-size: 80px;
+  color: var(--green); opacity: 0.3; line-height: 1;
+}
+.testimonial-card .quote {
+  font-family: 'Fraunces', serif;
+  font-size: 17px; line-height: 1.5;
+  color: var(--ink); font-style: italic;
+  margin-bottom: 24px;
+  position: relative; z-index: 1;
+}
+.testimonial-card .author {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 20px; border-top: 1px solid var(--line);
+}
+.testimonial-card .avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--navy));
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 700; font-size: 16px;
+  font-family: 'Fraunces', serif;
+}
+.testimonial-card .name { font-weight: 600; font-size: 15px; color: var(--navy); }
+.testimonial-card .meta { font-size: 13px; color: var(--muted); }
+
+/* PLANOS */
+.pricing { background: var(--cream); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+@media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
+.plan-card {
+  padding: 40px 32px; border-radius: 28px;
+  background: var(--paper); border: 1px solid var(--line);
+  position: relative; display: flex; flex-direction: column;
+  transition: all 0.3s ease;
+}
+.plan-card.featured {
+  background: var(--navy);
+  color: white; border-color: var(--navy);
+  transform: scale(1.03);
+  box-shadow: 0 32px 64px -24px rgba(26, 59, 92, 0.4);
+}
+.plan-badge {
+  position: absolute; top: -14px; left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px; border-radius: 100px;
+  background: var(--green); color: white;
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.plan-name {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 24px; margin-bottom: 8px;
+}
+.plan-price {
+  font-family: 'Fraunces', serif; font-weight: 900;
+  font-size: 56px; line-height: 1;
+  letter-spacing: -0.02em; margin: 16px 0;
+}
+.plan-card.featured .plan-price { color: var(--green); }
+.plan-price .currency { font-size: 24px; vertical-align: super; font-weight: 600; }
+.plan-price .period { font-size: 16px; font-weight: 400; color: var(--muted); }
+.plan-card.featured .plan-price .period { color: rgba(255, 255, 255, 0.6); }
+.plan-features { list-style: none; margin: 24px 0 32px; flex-grow: 1; }
+.plan-features li {
+  padding: 12px 0; display: flex; align-items: flex-start; gap: 12px;
+  font-size: 15px; border-bottom: 1px solid var(--line);
+}
+.plan-card.featured .plan-features li { border-bottom-color: rgba(255, 255, 255, 0.1); }
+.plan-features li:last-child { border-bottom: none; }
+.plan-features li::before {
+  content: '✓'; color: var(--green);
+  font-weight: 700; font-size: 18px;
+  flex-shrink: 0;
+}
+.plan-card .btn { width: 100%; justify-content: center; }
+.pricing-note {
+  text-align: center; margin-top: 32px;
+  font-size: 14px; color: var(--muted);
+}
+
+/* CTA FINAL */
+.final-cta {
+  position: relative; padding: 140px 0;
+  background: var(--navy-deep);
+  color: white; text-align: center; overflow: hidden;
+}
+.final-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url('images/silhouette-young-fitness-man-running-sunrise.jpg');
+  background-size: cover; background-position: center;
+  opacity: 0.18;
+}
+.final-cta::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(15, 40, 64, 0.8), rgba(15, 40, 64, 0.95));
+}
+.final-cta-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+.final-cta h2 {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.05; letter-spacing: -0.02em;
+  color: white; margin-bottom: 24px;
+}
+.final-cta h2 .em { font-style: italic; color: var(--green); font-weight: 400; }
+.final-cta p {
+  font-size: 18px; color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 40px; line-height: 1.6;
+}
+.final-cta .btn { font-size: 17px; padding: 20px 36px; }
+.final-cta .small {
+  display: block; margin-top: 16px;
+  font-size: 13px; color: rgba(255, 255, 255, 0.6);
+}
+.final-cta .mantra {
+  display: block; margin-top: 48px;
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 22px; color: var(--green); font-weight: 400;
+}
+
+/* FOOTER */
+footer {
+  background: #08172A;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 80px 0 40px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 64px;
+}
+@media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+@media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-brand .logo-row { margin-bottom: 16px; }
+.footer-brand .logo-row img { height: 56px; width: auto; }
+.footer-brand p {
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 17px; color: var(--green); max-width: 280px;
+}
+.footer-col h4 {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 16px; color: white; margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a { font-size: 14px; color: rgba(255, 255, 255, 0.65); transition: color 0.2s; }
+.footer-col a:hover { color: var(--green); }
+.footer-bottom {
+  padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  font-size: 13px; color: rgba(255, 255, 255, 0.5);
+}
+.footer-bottom .legal-links { display: flex; gap: 24px; flex-wrap: wrap; }
+
+/* SCROLL ANIMATIONS */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* MOBILE TWEAKS */
+@media (max-width: 768px) {
+  .section { padding: 80px 0; }
+  .hero { padding: 100px 0 60px; min-height: auto; }
+  .plan-card.featured { transform: scale(1); }
+  .medal-photo img { width: 100%; max-width: 380px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="images/logo-korremus-transparente.png" alt="Korremus" />
+    </a>
+    <div class="nav-links">
+      <a href="#solucao">Como funciona</a>
+      <a href="#encontros">Encontros</a>
+      <a href="#planos">Planos</a>
+      <a href="#cta" class="nav-cta">Baixar app</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-content">
+    <h1>
+      Juntos, <span class="em">corremos</span><br>
+      mais longe.
+    </h1>
+    <p class="hero-sub">
+      O primeiro app brasileiro de corrida coletiva.
+      Encontros reais na sua cidade, treinos com especialistas brasileiros
+      e medalhas que viram troféu na sua casa.
+    </p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn btn-primary">
+        Baixar agora — É grátis
+        <span>→</span>
+      </a>
+      <a href="#solucao" class="btn btn-ghost">
+        Ver como funciona ↓
+      </a>
+    </div>
+    <div class="hero-stars">
+      <span class="stars">★★★★★</span>
+      <span>Avaliado por corredores de todo Brasil</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="section problem">
+  <div class="container">
+    <span class="section-tag reveal">O que ninguém te conta</span>
+    <h2 class="reveal">Correr sozinho é mais <span class="em">difícil</span> do que parece.</h2>
+    <p class="section-intro reveal">
+      Não é falta de vontade. É outra coisa. A gente já viveu isso — por isso criou o Korremus.
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <div class="icon">🚪</div>
+        <h3>Sair de casa é a parte mais difícil.</h3>
+        <p>Começar a correr, você até consegue sozinho. Mas manter uma rotina de treino, acompanhado, fica muito mais fácil.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="icon">👥</div>
+        <h3>Falta gente com o mesmo propósito.</h3>
+        <p>Encontre pessoas focadas iguais a você. Tenha o incentivo de quem está caminhando na mesma direção que a sua.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="icon">⚠️</div>
+        <h3>Sem método, não dá certo.</h3>
+        <p>Correr sem método pode causar lesões e não trazer resultados. Você desiste antes mesmo de sentir progresso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÃO 3 PASSOS -->
+<section class="section solution" id="solucao">
+  <div class="container">
+    <span class="section-tag reveal">A solução em 3 passos</span>
+    <h2 class="reveal">Sua jornada de corrida<br>finalmente <span class="em">faz sentido</span>.</h2>
+    <p class="section-intro reveal">
+      Uma camada se conecta à outra. Encontros viram hábito. Hábito vira progresso. Progresso vira conquista física.
+    </p>
+
+    <div class="solution-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <h3>Encontros reais,<br>na sua cidade.</h3>
+        <p>Abra o app, veja onde tem gente correndo perto de você hoje e entre na turma. Iniciante, intermediário, mulheres-only, corrida noturna iluminada — escolha o que combina com você. Tudo organizado, tudo presencial, tudo seguro.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">02</div>
+        <h3>Treinos e nutrição<br>com especialistas brasileiros.</h3>
+        <p>Educadores físicos e nutricionistas reais montam os planos. Adaptados ao seu nível, ao seu corpo e à comida que você encontra no mercado da sua esquina — não à planilha britânica genérica.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">03</div>
+        <h3>Medalhas que chegam<br>na sua casa.</h3>
+        <p>A cada desafio cumprido, uma medalha física chega na sua porta. Sua conquista sai da tela do celular e vira troféu de verdade — pra exibir, colecionar, lembrar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENCONTROS -->
+<section class="meetups" id="encontros">
+  <div class="container meetups-inner">
+    <div class="meetups-img reveal">
+      <img src="images/wal_172619-jogging-4211946_1920.jpg" alt="Corredores em parque ao amanhecer" />
+      <div class="badge">
+        <div class="pin">📍</div>
+        <div class="info">
+          <div class="name">Treino Iniciantes — Ibira</div>
+          <div class="meta">Hoje · 06h30 · Pista de Cooper</div>
+        </div>
+        <div class="count">
+          <div class="num">24</div>
+          <div class="lbl">Confirmados</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <span class="section-tag">Encontros que fazem sentido</span>
+      <h2>Comunidade <span class="em">de verdade</span>.<br>Não só no chat.</h2>
+      <p class="section-intro">
+        Esqueça grupos sem engajamento e desafios estritamente virtuais.
+        No Korremus, comunidade é gente correndo junto, presencialmente, perto de você.
+      </p>
+
+      <div class="meetups-list">
+        <div class="meetups-item">
+          <div class="icon">📍</div>
+          <div class="text">Corridas mapeadas em parques e ruas seguras da sua cidade</div>
+        </div>
+        <div class="meetups-item">
+          <div class="icon">👥</div>
+          <div class="text">Turmas divididas por nível — do primeiro km à maratona</div>
+        </div>
+        <div class="meetups-item">
+          <div class="icon">🌅</div>
+          <div class="text">Horários flexíveis: manhã, almoço e fim de tarde</div>
+        </div>
+        <div class="meetups-item">
+          <div class="icon">🏢</div>
+          <div class="text">Run clubs corporativos para correr com colegas de trabalho</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDALHAS -->
+<section class="section rewards">
+  <div class="container">
+    <div class="rewards-grid">
+      <div class="medal-photo reveal">
+        <img src="images/medalha-korremus.png" alt="Medalha hexagonal Korremus em bronze metálico com os corredores em verde e azul-marinho" />
+      </div>
+
+      <div class="reveal">
+        <span class="section-tag">Recompensas reais</span>
+        <h2>Suas conquistas não merecem ficar <span class="em">presas no celular</span>.</h2>
+        <p class="section-intro">
+          Cumpra desafios, acumule quilômetros, receba medalhas físicas em casa.
+          Um troféu do mundo real, pra uma conquista do mundo real.
+        </p>
+
+        <div class="rewards-features">
+          <div class="rewards-feature">
+            <div class="icon">🎯</div>
+            <div class="text">Cumpra desafios e acumule quilômetros direto no app</div>
+          </div>
+          <div class="rewards-feature">
+            <div class="icon">📦</div>
+            <div class="text">Receba medalhas físicas diretamente na sua porta</div>
+          </div>
+          <div class="rewards-feature">
+            <div class="icon">🏆</div>
+            <div class="text">Monte sua coleção, conquista por conquista</div>
+          </div>
+        </div>
+
+        <div class="rewards-quote">
+          "Juntos, mais longe." — gravado em cada medalha.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARAÇÃO -->
+<section class="section compare">
+  <div class="container">
+    <span class="section-tag reveal">Por que não é só mais um app de corrida</span>
+    <h2 class="reveal">Concorrentes otimizam o cronômetro.<br>A gente otimiza o <span class="em">ponto de encontro</span>.</h2>
+    <p class="section-intro reveal">
+      Strava, Nike e apps de planilha foram construídos para o atleta solitário focado em métrica.
+      Korremus é desenhado para quem precisa de gente do lado.
+    </p>
+
+    <div class="compare-table reveal">
+      <div class="compare-row header">
+        <div class="compare-cell feature">Recurso</div>
+        <div class="compare-cell">Strava</div>
+        <div class="compare-cell">Nike Run</div>
+        <div class="compare-cell">Planilhas</div>
+        <div class="compare-cell col-korremus">Korremus</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Tracking de performance</div>
+        <div class="compare-cell"><span class="check-yes">✓</span></div>
+        <div class="compare-cell"><span class="check-yes">✓</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell col-korremus"><span class="check-yes">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Encontros físicos agendados na sua cidade</div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell col-korremus"><span class="check-yes">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Segurança com perfis verificados</div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell col-korremus"><span class="check-yes">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Treinos e dietas com profissionais brasileiros</div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell col-korremus"><span class="check-yes">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Medalhas físicas entregues em casa</div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell col-korremus"><span class="check-yes">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell feature">Run clubs corporativos integrados</div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell"><span class="check-no">×</span></div>
+        <div class="compare-cell col-korremus"><span class="check-yes">✓</span></div>
+      </div>
+    </div>
+
+    <div class="compare-quote reveal">
+      <p>Concorrentes otimizam o cronômetro.<br><span class="em">A gente otimiza o ponto de encontro.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAS -->
+<section class="section personas">
+  <div class="container">
+    <span class="section-tag reveal">Para quem faz sentido</span>
+    <h2 class="reveal">Korremus é <span class="em">pra você</span> se...</h2>
+    <p class="section-intro reveal">
+      Três perfis. Uma comunidade. O mesmo propósito: correr melhor, junto.
+    </p>
+
+    <div class="personas-grid">
+      <div class="persona-card reveal">
+        <div class="emoji">🏃‍♀️</div>
+        <h3>Você não gosta de correr sozinho.</h3>
+        <p>Aqui você corre acompanhado, com gente verificada, em horários e parques seguros. Nunca mais sozinho na frente de casa.</p>
+      </div>
+      <div class="persona-card reveal">
+        <div class="emoji">🆕</div>
+        <h3>Você nunca correu e quer começar do zero.</h3>
+        <p>Tem turma de iniciante, treinador no local e ninguém vai te julgar pelo seu ritmo. Cada km conta, do primeiro ao último.</p>
+      </div>
+      <div class="persona-card reveal">
+        <div class="emoji">🎯</div>
+        <h3>Você já corre, mas quer comunidade.</h3>
+        <p>Encontra gente do seu nível, descobre rotas novas e troca de verdade com quem ama o esporte. Sem o feed individualista de Strava.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section testimonials">
+  <div class="container">
+    <span class="section-tag reveal">Quem já corre com a gente</span>
+    <h2 class="reveal">Histórias <span class="em">reais</span> de quem deu o primeiro passo.</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <p class="quote">Eu nunca tinha conseguido correr mais de 1 km. No Korremus achei uma turma de iniciantes no Ibirapuera. Hoje faço 5 km duas vezes por semana — e ainda fiz amigas.</p>
+        <div class="author">
+          <div class="avatar">C</div>
+          <div>
+            <div class="name">Camila R., 42 anos</div>
+            <div class="meta">São Paulo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <p class="quote">Sou da Vila Madalena. Comecei a correr no run club da minha empresa pelo Korremus. Em 3 meses, perdi 4 kg e voltei a dormir bem.</p>
+        <div class="author">
+          <div class="avatar">R</div>
+          <div>
+            <div class="name">Rafael M., 35 anos</div>
+            <div class="meta">São Paulo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <p class="quote">O que me prendeu foi a medalha. Parece bobo, mas chegar em casa com aquele troféu depois de cada desafio me motivou a continuar.</p>
+        <div class="author">
+          <div class="avatar">J</div>
+          <div>
+            <div class="name">Juliana S., 38 anos</div>
+            <div class="meta">Pinheiros, SP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="section pricing" id="planos">
+  <div class="container">
+    <span class="section-tag reveal">Escolha sua pista</span>
+    <h2 class="reveal">Comece grátis.<br>Evolua <span class="em">quando quiser</span>.</h2>
+    <p class="section-intro reveal">
+      Sem fidelidade, sem pegadinha. Comece pela comunidade, evolua quando quiser método e recompensas.
+    </p>
+
+    <div class="pricing-grid">
+      <div class="plan-card reveal">
+        <div class="plan-name">Korremus Starter</div>
+        <div class="plan-price">
+          <span class="currency">R$</span>19
+          <span class="period">/ mês</span>
+        </div>
+        <ul class="plan-features">
+          <li>Participação em encontros públicos</li>
+          <li>Acesso à comunidade local</li>
+          <li>Chat básico</li>
+          <li>Tracking de quilometragem</li>
+        </ul>
+        <a href="#cta" class="btn btn-dark">Começar agora</a>
+      </div>
+
+      <div class="plan-card featured reveal">
+        <div class="plan-badge">Mais escolhido</div>
+        <div class="plan-name">Korremus Premium</div>
+        <div class="plan-price">
+          <span class="currency">R$</span>49
+          <span class="period">/ mês</span>
+        </div>
+        <ul class="plan-features">
+          <li>Treinos personalizados</li>
+          <li>Dieta guiada</li>
+          <li>Encontros exclusivos com especialistas</li>
+          <li>Análise de performance avançada</li>
+          <li>Suporte direto pelo app</li>
+        </ul>
+        <a href="#cta" class="btn btn-primary">Quero o Premium</a>
+      </div>
+
+      <div class="plan-card reveal">
+        <div class="plan-name">Desafios Korremus</div>
+        <div class="plan-price">
+          <span class="currency">R$</span>89
+          <span class="period">/ desafio</span>
+        </div>
+        <ul class="plan-features">
+          <li>Eventos épicos híbridos</li>
+          <li>Mandala e medalhas físicas</li>
+          <li>Entrega direto na sua casa</li>
+          <li>Certificado de conclusão</li>
+        </ul>
+        <a href="#cta" class="btn btn-dark">Ver desafios</a>
+      </div>
+    </div>
+
+    <p class="pricing-note reveal">Sem cartão de crédito de entrada. Sem pegadinha. Cancele quando quiser.</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final-cta" id="cta">
+  <div class="container final-cta-inner reveal">
+    <h2>Não espere a coragem chegar sozinha<br>para <span class="em">começar a correr</span>.</h2>
+    <p>
+      Faça parte da primeira comunidade a transformar a corrida no Brasil.<br>
+      Comece hoje a correr junto com quem quer correr com você.
+    </p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="#" class="btn btn-primary">
+        Baixar Korremus — Grátis
+        <span>→</span>
+      </a>
+    </div>
+    <span class="small">Disponível para iOS e Android.</span>
+    <span class="mantra">Juntos, corremos mais longe.</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-row">
+          <img src="images/logo-korremus-transparente.png" alt="Korremus" />
+        </div>
+        <p>Juntos, corremos mais longe.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Produto</h4>
+        <ul>
+          <li><a href="#solucao">Como funciona</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#encontros">Encontros</a></li>
+          <li><a href="#">Desafios</a></li>
+          <li><a href="#">Korremus Empresas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Comunidade</h4>
+        <ul>
+          <li><a href="#">Para corredores</a></li>
+          <li><a href="#">Para organizadores</a></li>
+          <li><a href="#">Para experts e influencers</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Sobre</h4>
+        <ul>
+          <li><a href="#">A gente</a></li>
+          <li><a href="#">Imprensa</a></li>
+          <li><a href="#">Carreiras</a></li>
+          <li><a href="mailto:ola@korremus.com.br">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Korremus. Todos os direitos reservados.</div>
+      <div class="legal-links">
+        <a href="#">Termos de uso</a>
+        <a href="#">Política de privacidade</a>
+        <a href="#">LGPD</a>
+        <a href="#">Responsáveis técnicos CREF/CRN</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+revealEls.forEach(el => observer.observe(el));
+
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    nav.style.boxShadow = '0 2px 12px rgba(0,0,0,0.04)';
+  } else {
+    nav.style.boxShadow = '';
+  }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
